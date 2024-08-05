@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask 2048</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='game.css') }}">
+</head>
+
+<body>
+    {% block content %}
+    <dialog>
+        <p class="message"></p>
+        <button onclick="reset()">Reset</button>
+    </dialog>
+    <dialog>
+        <p class="message"></p>
+        <button onclick="reset()">Reset</button>
+    </dialog>
+    <h1>Reach 2048 first to win!</h1>
+    <div class="gameDiv">
+        <h2>Score: 0</h2>
+        <table>
+            {% for row in range(4) %}
+            <tr>
+                {% for cell in range(4) %}
+                <td>
+                    <div class="cell cell-{{cell}}"></div>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="gameDiv">
+        <h2>Score: 0</h2>
+        <table>
+            {% for row in range(4) %}
+            <tr>
+                {% for cell in range(4) %}
+                <td>
+                    <div class="cell cell-{{cell}}"></div>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <p id="share">Share your link or room ID <span>{{room_id}}</span> to play with a friend</p>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+    <script src="{{url_for('static', filename='game.js')}}"></script>
+    {% endblock %}
+</body>
+
+</html>

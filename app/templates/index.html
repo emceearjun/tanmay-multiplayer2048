@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask 2048</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+
+<body>
+    <h1>Welcome to Multiplayer 2048!</h1>
+    <h2>Create a room or join one to start playing.</h2>
+    <form action="{{ url_for('create') }}" method="post">
+        <button type="submit">Create</button>
+    </form>
+    <form action="{{ url_for('join') }}" method="post">
+        <input id="room_id" name="room_id" type="text" placeholder="Enter room ID" required>
+        <button type="submit">Join</button>
+    </form>
+</body>
+
+</html>
