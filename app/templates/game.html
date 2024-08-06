@@ -66,10 +66,8 @@
         });
 
         socket.on('show_score', function (data) {
-            scorelabels.forEach(element => {
-                element.style.textShadow = "";
-                element.style.color = "";
-            });
+            scorelabels[1-data['player']].style.color = "";
+            scorelabels[1-data['player']].style.textShadow = "";
             scorelabels[data['player']].style.color = "#ff24c8";
             scorelabels[data['player']].style.textShadow = "0px 0px 5px rgba(255, 36, 200, 0.8)";
         });

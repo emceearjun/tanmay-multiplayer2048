@@ -105,17 +105,22 @@ def handle_disconnect():
         del game_rooms[room_id]
         print(f'Deleted room: {room_id}')
     else:
-        for player in range(2):
-            emit('updated', {'player': player,
-                             'mat': [[0] * 4 for _ in range(4)],
-                             'score': 0,
-                             'state': ''}, room=room_id)
-        game = logic.reset()
+        # for player in range(2):
+        #     emit('updated', {'player': player,
+        #                      'mat': [[0] * 4 for _ in range(4)],
+        #                      'score': 0,
+        #                      'state': ''}, room=room_id)
+        # game = logic.reset()
+        player = 0 if next(iter(game_rooms[room_id])) == request.sid else 1
+        emit('updated', {'player': player,
+                         'mat': [[0] * 4 for _ in range(4)],
+                         'score': 0,
+                         'state': ''}, room=room_id)
         remaining_player = list(game_rooms[room_id])[0]
-        game_rooms[room_id][remaining_player] = {
-                'mat': game[0],
-                'score': game[1]
-        }
+        # game_rooms[room_id][remaining_player] = {
+        #         'mat': game[0],
+        #         'score': game[1]
+        # }
         emit('show_score', {'player': 0}, to=remaining_player)
         emit('remove_listener', to=remaining_player)
     print(f'Client disconnected: {request.sid}')
