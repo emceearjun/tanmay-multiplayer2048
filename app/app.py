@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for, make_response
 from flask_socketio import SocketIO, join_room, leave_room, emit
+from flask_cors import CORS
 import logic
 import uuid
 
@@ -9,7 +10,8 @@ import uuid
 # Delete rooms without any players - maybe also timeout if 2 people do not join - if person leaves room as well
 
 app = Flask(__name__)
-socketio = SocketIO(app)
+CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="*", logger=True, engineio_logger=True, async_handlers=True)
 app.secret_key = '06ae106f5b4e740059c97782'
 client_rooms = {}
 game_rooms = {}
@@ -129,5 +131,5 @@ def handle_disconnect():
 def handle_message(message):
     emit('message', message, broadcast=True)
 
-if __name__ == '__main__':
-    socketio.run(app)
+# if __name__ == '__main__':
+#     socketio.run(app)
