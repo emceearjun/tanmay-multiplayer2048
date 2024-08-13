@@ -3,13 +3,8 @@ from flask_socketio import SocketIO, join_room, leave_room, emit
 import logic
 import uuid
 
-# TODO
-# Display modal only for player if their board is full to reset it - not with reloading, separate function to reset from server
-# Display which player has won in center modal
-# Delete rooms without any players - maybe also timeout if 2 people do not join - if person leaves room as well
-
 app = Flask(__name__)
-socketio = SocketIO(app)
+socketio = SocketIO(app, cors_allowed_origins="*", logger=True, engineio_logger=True, async_handlers=True)
 app.secret_key = '06ae106f5b4e740059c97782'
 client_rooms = {}
 game_rooms = {}

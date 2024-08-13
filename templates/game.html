@@ -49,12 +49,11 @@
     </div>
     <p id="share">Share your link or room ID <span>{{room_id}}</span> to play with a friend</p>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
-    <script src="{{url_for('static', filename='game.js')}}"></script>
     <script>
         document.querySelector('.gameDiv').style.float = "left";
         document.querySelectorAll('.gameDiv')[1].style.float = "right";
 
-        var socket = io.connect(location.origin + ':' + location.port);
+        var socket = io.connect(location.origin);
         var room_id;
 
         const dialogs = document.querySelectorAll('dialog')
