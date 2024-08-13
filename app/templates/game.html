@@ -53,7 +53,7 @@
         document.querySelector('.gameDiv').style.float = "left";
         document.querySelectorAll('.gameDiv')[1].style.float = "right";
 
-        var socket = io.connect(location.origin + ':' + location.port);
+        var socket = io.connect(location.origin);
         var room_id;
 
         const dialogs = document.querySelectorAll('dialog')
