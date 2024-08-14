@@ -6,7 +6,7 @@ import uuid
 
 app = Flask(__name__)
 CORS(app)
-socketio = SocketIO(app, cors_allowed_origins="*", logger=True, engineio_logger=True, async_handlers=True)
+socketio = SocketIO(app, cors_allowed_origins="*", async_mode='eventlet', logger=True, engineio_logger=True, async_handlers=True)
 app.secret_key = '06ae106f5b4e740059c97782'
 client_rooms = {}
 game_rooms = {}
@@ -126,5 +126,5 @@ def handle_disconnect():
 def handle_message(message):
     emit('message', message, broadcast=True)
 
-if __name__ == '__main__':
-    socketio.run(app)
+# if __name__ == '__main__':
+#     socketio.run(app)
